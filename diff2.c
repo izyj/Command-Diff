@@ -26,7 +26,7 @@ int main(int argc,char* argv[]){
         countFile1++;
     }
     fseek(fic, 0L, SEEK_SET);
-    printf("Compteur du fichier 1 = %d \n",countFile1);
+    //printf("Compteur du fichier 1 = %d \n",countFile1);
     while(fgets(ligne_lue2, 512, fic2) != NULL){
         countFile2++;
     }
@@ -38,10 +38,12 @@ int main(int argc,char* argv[]){
         drapCountFile = countFile1;
     }
     fseek(fic2, 0L, SEEK_SET);
-    printf("Compteur du fichier 2 = %d \n",countFile2);
-        while(fgets(ligne_lue, 512, fic) != NULL && fgets(ligne_lue2,512,fic2) != NULL){
-            printf("Line N°%d \n Content : %s\n",nb_lignes_file1,ligne_lue);
-            printf("Line N°%d \n Content : %s\n",nb_lignes_file2,ligne_lue2);
+    char* R1 =fgets(ligne_lue, 512, fic);
+    char* R2 =fgets(ligne_lue2, 512, fic2);
+    //printf("Compteur du fichier 2 = %d \n",countFile2);
+        while( R1!= NULL && R2 != NULL){
+            //printf("Line N°%d \n Content : %s\n",nb_lignes_file1,ligne_lue);
+            //printf("Line N°%d \n Content : %s\n",nb_lignes_file2,ligne_lue2);
             i = 0;
             while(ligne_lue2[i] != '\0' || ligne_lue[i] != '\0'){
                 if(ligne_lue[i] == '\0' ){
@@ -55,18 +57,31 @@ int main(int argc,char* argv[]){
                     printf("File 1 --> '%c' | ",ligne_lue[i]);
                     printf("File 2 --> '%c' ->  PAS OK \n",ligne_lue2[i]);
                     }else{
-                        printf("File 1 --> %c | ",ligne_lue[i]);
-                        printf("File 2 --> %c -> OK \n",ligne_lue2[i]);
+                       // printf("File 1 --> %c | ",ligne_lue[i]);
+                        //printf("File 2 --> %c -> OK \n",ligne_lue2[i]);
                     }
                     i++;
             }
                 nb_lignes_file1++;
                 nb_lignes_file2++;
+                R1 =fgets(ligne_lue, 512, fic);
+                R2 =fgets(ligne_lue2, 512, fic2);
         }
+    if(R1 == NULL && R2 != NULL){
+        do{
+        //printf("File 2 - Line N°%d \n Content : %s\n",nb_lignes_file2,ligne_lue2);
+        R2 =fgets(ligne_lue2, 512, fic2);
+        }while(R2 != NULL);
+    }else{
+        do{
+        //printf("File 1 - Line N°%d \n Content : %s\n",nb_lignes_file1,ligne_lue);
+        R1 =fgets(ligne_lue, 512, fic);
+        }while(R1 != NULL);
+    }
     if(erreurLigne == 0){
         printf("Files differ ! \n");
     }else{
         printf("File Equals ! \n");
     }
- 
+    
 }
