@@ -2,8 +2,6 @@
 #include <stdlib.h>
 int main(int argc,char* argv[]){
     int y = 1;
-    int flag1 = 1;
-    int flag2 = 1;
     int erreurLigne = 1;
     char ligne_lue[512];
     char ligne_lue2[512];
@@ -21,15 +19,16 @@ int main(int argc,char* argv[]){
     int i=0;
     int countFile1 = 0;
     int countFile2 = 0;
-    int drapCountFile = 0;
     while(fgets(ligne_lue, 512, fic) != NULL){
         countFile1++;
     }
+    //Reinitialize pointer on file 1
     fseek(fic, 0L, SEEK_SET);
     //printf("Compteur du fichier 1 = %d \n",countFile1);
     while(fgets(ligne_lue2, 512, fic2) != NULL){
         countFile2++;
     }
+    //printf("File 1 - Line N°%d \n Content : %s\n",nb_lignes_file1,ligne_lue);
     fseek(fic2, 0L, SEEK_SET);
     char* R1 =fgets(ligne_lue, 512, fic);
     char* R2 =fgets(ligne_lue2, 512, fic2);
@@ -76,5 +75,4 @@ int main(int argc,char* argv[]){
     }else{
         printf("File Equals ! \n");
     }
-    
 }
