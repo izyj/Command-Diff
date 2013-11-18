@@ -30,20 +30,13 @@ int main(int argc,char* argv[]){
     while(fgets(ligne_lue2, 512, fic2) != NULL){
         countFile2++;
     }
-    if(countFile1 > countFile2){
-        drapCountFile = countFile1;
-    }else if(countFile1 < countFile2){
-        drapCountFile = countFile2;
-    }else{
-        drapCountFile = countFile1;
-    }
     fseek(fic2, 0L, SEEK_SET);
     char* R1 =fgets(ligne_lue, 512, fic);
     char* R2 =fgets(ligne_lue2, 512, fic2);
     //printf("Compteur du fichier 2 = %d \n",countFile2);
         while( R1!= NULL && R2 != NULL){
-            //printf("Line N°%d \n Content : %s\n",nb_lignes_file1,ligne_lue);
-            //printf("Line N°%d \n Content : %s\n",nb_lignes_file2,ligne_lue2);
+            printf("Line N°%d \n Content : %s\n",nb_lignes_file1,ligne_lue);
+            printf("Line N°%d \n Content : %s\n",nb_lignes_file2,ligne_lue2);
             i = 0;
             while(ligne_lue2[i] != '\0' || ligne_lue[i] != '\0'){
                 if(ligne_lue[i] == '\0' ){
@@ -57,8 +50,8 @@ int main(int argc,char* argv[]){
                     printf("File 1 --> '%c' | ",ligne_lue[i]);
                     printf("File 2 --> '%c' ->  PAS OK \n",ligne_lue2[i]);
                     }else{
-                       // printf("File 1 --> %c | ",ligne_lue[i]);
-                        //printf("File 2 --> %c -> OK \n",ligne_lue2[i]);
+                        printf("File 1 --> %c | ",ligne_lue[i]);
+                        printf("File 2 --> %c -> OK \n",ligne_lue2[i]);
                     }
                     i++;
             }
