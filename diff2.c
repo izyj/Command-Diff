@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 int main(int argc,char* argv[]){
+    //ISAAC GW et IVAN
     int y = 1;
     int erreurLigne = 1;
     char ligne_lue[512];
